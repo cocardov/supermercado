@@ -18,7 +18,7 @@ void getFromCmd(std::string_view msj, std::string* value);
 
 void getFromCmd(std::string_view msj, double* value);
 
-void arise(Employee* someEmployee, int arise = 1000);
+void arise(Employee* someEmployee, int arise);
 
 void getEmployee(Employee* e);
 

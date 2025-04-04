@@ -46,8 +46,8 @@ void getEmployee(Employee* e)
     getFromCmd("ingrese su edad: ", &e->age);
     getFromCmd("ingrese su presupuesto: $", &e->money);
     //se imprimen los distintos volores.
-    std::cout << "la edad de e es: " << e->age << '\n';
-    std::cout << "el documento de e es: " << e->id << '\n';
-    std::cout << "el nombre completo de e es: " << e->name << '\n';
-    std::cout << "el presupuesto de e es: $" << e->money << '\n';
+    std::cout << "la edad de " << e->name << " es: " << e->age << '\n';
+    std::cout << "el documento de " << e->name << " es: " << e->id << '\n';
+    std::cout << "el nombre completo de " << e->name <<" es: " << e->name << '\n';
+    std::cout << "el presupuesto de " << e->name << " es: $" << e->money << '\n';
 }
