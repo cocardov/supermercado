@@ -3,7 +3,8 @@
 
 int main()
 {
-    Employee juan {};
-    getEmployee(&juan);  
+    displayOptions();  
+    //std::cout << "saliste al main\n";
+
     return 0;
 }

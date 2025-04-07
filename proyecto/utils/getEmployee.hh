@@ -22,5 +22,7 @@ void arise(Employee* someEmployee, int arise);
 
 void getEmployee(Employee* e);
 
+void displayOptions();
+
 
 #endif

@@ -4,9 +4,9 @@ con precio, nombre. Que también esté la opción de comprar, que haya protocolo
 suficiente stock de un mismo producto, que calcule también el total a pagar, agregar cupones de descuento
 que apliquien para ciertos productos. Todo desde la terminal.*/
 
-//una función para obtener valores o texto desde el 
-//una función para mostrar un display de opciones.
-//funciones separadas para cada una de las opciones.
+//una función para obtener valores o texto desde la terminal. listo
+//una función para mostrar un display de opciones. listo
+//funciones separadas para cada una de las opciones. 
 //un archivo aparte donde se creen los objetos.
-//hacer todo separado y unirlo con CMake.
-//una función que acepte un parametro de texto y un puntero.
+//hacer todo separado y unirlo con CMake. listo
+//una función que acepte un parametro de texto y un puntero. listo
