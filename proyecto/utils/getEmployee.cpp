@@ -2,6 +2,8 @@
 #include <limits>
 #include "getEmployee.hh"
 
+bool exitMyProgram = false;
+
 // función para limpiar el buffer.
 void ignoreLine()
 {
@@ -30,58 +32,81 @@ void getFromCmd(std::string_view msj, double *value)
     std::cin >> (*value);
 }
 
-// le asigna un aumento default de $1000 al empleado, esto puede cambiar.
-void arise(Employee *someEmployee, int arise = 1000)
-{
-    std::cout << someEmployee->name << " recibió un aumento de $" << arise << ".\n";
-    someEmployee->money += arise;
-}
 
-//imprime y toma datos del empleado
+// imprime y toma datos del empleado
 void getEmployee(Employee *e)
 {
-    getFromCmd("ingrese su documento: ", &e->id);
     getFromCmd("ingrese su nombre: ", &e->name);
-    getFromCmd("ingrese su edad: ", &e->age);
-    getFromCmd("ingrese su presupuesto: $", &e->money);
+    getFromCmd("ingrese su documento: ", &e->id);
     // se imprimen los distintos volores.
-    std::cout << "la edad de " << e->name << " es: " << e->age << '\n';
     std::cout << "el documento de " << e->name << " es: " << e->id << '\n';
-    std::cout << "el nombre completo de " << e->name << " es: " << e->name << '\n';
-    std::cout << "el presupuesto de " << e->name << " es: $" << e->money << '\n';
+    std::cout << e->name << " registrado con éxito como Empleado.\n";
+    std::cout << '\n';
+    
 }
 
-//imprime un switch de las opciones que puede realizar la persona.
+void getCustomer(Customer* c)
+{
+    getFromCmd("ingrese su nombre: ", &c->name);
+    getFromCmd("ingrese su documento: ", &c->id);
+    getFromCmd("ingrese su presupuesto: $", &c->money);
+    // se imprimen los distintos volores.
+    std::cout << "el documento de " << c->name << " es: " << c->id << '\n';
+    std::cout << "el presupuesto de " << c->name << " es: $" << c->money << '\n';
+    std::cout << c->name << " registrado con éxito como Cliente.\n";
+    std::cout << '\n';
+
+}
+
+// imprime un switch de las opciones que puede realizar la persona.
 void displayOptions()
 {
+    std::cout << '\n';
+    std::cout << '\n';
     std::cout << "APLICACIÓN PARA SUPERMERCADO SUPERSOL\n";
     std::cout << '\n';
     std::cout << "menú principal:\n";
     std::cout << '\n';
     std::cout << "ingrese el número de la acción que desea realizar.\n";
     std::cout << "1. Registrar como empleado.\n";
-    std::cout << "2. Salir.\n";
+    std::cout << "2. Registrar como comprador.\n";
+    std::cout << "3. Salir.\n";
     std::cout << '\n';
-    
+
     while (true)
     {
         int opción{};
         std::cin >> opción;
         Employee e{};
+        Customer c{};
         switch (opción)
         {
-            case 1:
+        case 1:
             getEmployee(&e);
+            
             return;
+
         case 2:
-            std::cout << "gracias por salir.\n";
+            getCustomer(&c);
             return;
+
+        case 3:
+            std::cout << '\n';
+            std::cout << '\n';
+            std::cout << "esperamos haya disfrutado la experiencia\n";
+
+            exitMyProgram = true;
+            return;
+            
         default:
             std::cout << "ingresá un caracter válido.\n";
             break;
         }
-    }
 
-    //nunca se llega a ejecutar este pedazo de código.
+        //Employee e y Customer c go out of scoop here.
+        
+    } //while (true).
 
-}//void displayOptions();
+    // nunca se llega a ejecutar este pedazo de código.
+
+} // void displayOptions();

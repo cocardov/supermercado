@@ -4,9 +4,19 @@ con precio, nombre. Que también esté la opción de comprar, que haya protocolo
 suficiente stock de un mismo producto, que calcule también el total a pagar, agregar cupones de descuento
 que apliquien para ciertos productos. Todo desde la terminal.*/
 
-//una función para obtener valores o texto desde la terminal. listo
-//una función para mostrar un display de opciones. listo
-//funciones separadas para cada una de las opciones. 
-//un archivo aparte donde se creen los objetos.
-//hacer todo separado y unirlo con CMake. listo
 //una función que acepte un parametro de texto y un puntero. listo
+
+//una función para obtener valores o texto desde la terminal. listo
+
+//una función para mostrar un display de opciones. listo
+
+//hacer un do-while que repita el display hasta que se salga de la aplicación.
+
+//un archivo aparte donde se creen los objetos.
+
+//funciones separadas para cada una de las opciones. 
+
+//hay de dos opciones, o tener que crear un empleado cada vez que se quiere operar, o que se guarden los
+//empleados en un archivo de texto aparte.
+
+//hacer todo separado y unirlo con CMake. listo
