@@ -10,13 +10,16 @@ que apliquien para ciertos productos. Todo desde la terminal.*/
 
 //una función para mostrar un display de opciones. listo
 
-//hacer un do-while que repita el display hasta que se salga de la aplicación.
-
-//un archivo aparte donde se creen los objetos.
-
-//funciones separadas para cada una de las opciones. 
-
-//hay de dos opciones, o tener que crear un empleado cada vez que se quiere operar, o que se guarden los
-//empleados en un archivo de texto aparte.
+//hacer un do-while que repita el display hasta que se salga de la aplicación. listo
 
 //hacer todo separado y unirlo con CMake. listo
+
+
+
+
+TO-DO
+
+//funciones separadas para cada una de las opciones. 
+//un archivo aparte donde se creen los objetos.
+//hay de dos opciones, o tener que crear un empleado cada vez que se quiere operar, o que se guarden los
+//empleados en un archivo de texto aparte.

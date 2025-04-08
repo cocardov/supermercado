@@ -4,12 +4,14 @@
 
 bool exitMyProgram = false;
 
+
 // función para limpiar el buffer.
 void ignoreLine()
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+//overload de funciones para el input de datos
 void getFromCmd(std::string_view msj, int *value)
 {
     std::cout << '\n';
@@ -33,7 +35,7 @@ void getFromCmd(std::string_view msj, double *value)
 }
 
 
-// imprime y toma datos del empleado
+// imprime texto y toma datos del empleado
 void getEmployee(Employee *e)
 {
     getFromCmd("ingrese su nombre: ", &e->name);
@@ -45,6 +47,7 @@ void getEmployee(Employee *e)
     
 }
 
+// imprime texto y toma los datos del cliente
 void getCustomer(Customer* c)
 {
     getFromCmd("ingrese su nombre: ", &c->name);
@@ -58,7 +61,7 @@ void getCustomer(Customer* c)
 
 }
 
-// imprime un switch de las opciones que puede realizar la persona.
+// imprime un switch de las opciones que puede realizar la persona
 void displayOptions()
 {
     std::cout << '\n';
@@ -82,31 +85,32 @@ void displayOptions()
         switch (opción)
         {
         case 1:
-            getEmployee(&e);
+            getEmployee(&e); //caso 1, se toman los datos del empleado. falta implementación
             
             return;
 
         case 2:
-            getCustomer(&c);
+            getCustomer(&c); //caso 2, se toman los datos del cliente. falta implementación
             return;
 
         case 3:
-            std::cout << '\n';
+            std::cout << '\n'; //caso 3, exit
             std::cout << '\n';
             std::cout << "esperamos haya disfrutado la experiencia\n";
 
-            exitMyProgram = true;
+            exitMyProgram = true; //para cerrar el while de main()
             return;
             
         default:
             std::cout << "ingresá un caracter válido.\n";
             break;
-        }
 
-        //Employee e y Customer c go out of scoop here.
+        }//fin del switch
+
+                            //Employee e y Customer c se van fuera de scoop acá.
         
-    } //while (true).
+    } //fin del while (true).
 
-    // nunca se llega a ejecutar este pedazo de código.
+                             // nunca se llega a ejecutar este pedazo de código.
 
 } // void displayOptions();
