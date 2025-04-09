@@ -21,5 +21,38 @@ TO-DO
 
 //funciones separadas para cada una de las opciones. 
 //un archivo aparte donde se creen los objetos.
-//hay de dos opciones, o tener que crear un empleado cada vez que se quiere operar, o que se guarden los
-//empleados en un archivo de texto aparte.
+//usar las funciones getEmployee() y getCustomer() para escribir los datos en un documento de texto aparte,
+por ejemplo si hay un saldo restante en la cuenta de un cliente.
+que getEmployee() y getCustomer() sean funciones para la opción de "REGISTER", si existe una misma persona con
+el mismo documento, informar el error y iniciar sesión con la cuenta existente.
+En cambio si no existe una cuenta con cierto DNI y se quiere iniciar sesión, se informa el error y se procede al REGISTER.
+Que las opciones REGISTER y LOGIN lean datos de los documentos de texto exitentes, uno para Employees y uno para getCustomers,
+como así también escriban texto.
+
+BIENVENIDO AL SUPERMERCADO SUPERSOL:
+
+Ingrese el número de la acción que desea realizar:
+
+1. Registro o inicio de sesión de Empleados.
+2. Registro o inicio de sesión de Clientes.
+3. Salir.
+
+-----------------------------------------------------
+
+Acciones para Empleados:
+
+1. Iniciar sesión.              // si el DNI no coincide con ninguna persona de Employees.txt, informar y registrar.
+2. Registrar.                   //getEmployee(), si el DNI coincide con el de una persona en Employees.txt, informar e iniciar sesión.
+3. Volver.
+4. Salir.
+
+------------------------------------------------------
+
+Acciones para Clientes:
+
+1. Iniciar sesión.              // si el DNI no coincide con ninguna persona de Customers.txt, informar y registrar.
+2. Registrar.                   //getCustomer(), si el DNI coincide con el de una persona en Customers.txt, informar e iniciar sesión.
+3. Volver.
+4. Salir.
+
+------------------------------------------------------

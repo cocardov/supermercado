@@ -73,15 +73,15 @@ CMakeFiles/supermercado.dir/main.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/main.cpp.o: /home/coquito/supermercado/proyecto/main.cpp
 CMakeFiles/supermercado.dir/main.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/coquito/supermercado/proyecto/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/supermercado.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/main.cpp.o -MF CMakeFiles/supermercado.dir/main.cpp.o.d -o CMakeFiles/supermercado.dir/main.cpp.o -c /home/coquito/supermercado/proyecto/main.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/main.cpp.o -MF CMakeFiles/supermercado.dir/main.cpp.o.d -o CMakeFiles/supermercado.dir/main.cpp.o -c /home/coquito/supermercado/proyecto/main.cpp
 
 CMakeFiles/supermercado.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/coquito/supermercado/proyecto/main.cpp > CMakeFiles/supermercado.dir/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/coquito/supermercado/proyecto/main.cpp > CMakeFiles/supermercado.dir/main.cpp.i
 
 CMakeFiles/supermercado.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/coquito/supermercado/proyecto/main.cpp -o CMakeFiles/supermercado.dir/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/coquito/supermercado/proyecto/main.cpp -o CMakeFiles/supermercado.dir/main.cpp.s
 
 # Object files for target supermercado
 supermercado_OBJECTS = \

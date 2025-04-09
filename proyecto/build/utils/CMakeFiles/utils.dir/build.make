@@ -73,15 +73,15 @@ utils/CMakeFiles/utils.dir/getEmployee.cpp.o: utils/CMakeFiles/utils.dir/flags.m
 utils/CMakeFiles/utils.dir/getEmployee.cpp.o: /home/coquito/supermercado/proyecto/utils/getEmployee.cpp
 utils/CMakeFiles/utils.dir/getEmployee.cpp.o: utils/CMakeFiles/utils.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/coquito/supermercado/proyecto/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object utils/CMakeFiles/utils.dir/getEmployee.cpp.o"
-	cd /home/coquito/supermercado/proyecto/build/utils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT utils/CMakeFiles/utils.dir/getEmployee.cpp.o -MF CMakeFiles/utils.dir/getEmployee.cpp.o.d -o CMakeFiles/utils.dir/getEmployee.cpp.o -c /home/coquito/supermercado/proyecto/utils/getEmployee.cpp
+	cd /home/coquito/supermercado/proyecto/build/utils && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT utils/CMakeFiles/utils.dir/getEmployee.cpp.o -MF CMakeFiles/utils.dir/getEmployee.cpp.o.d -o CMakeFiles/utils.dir/getEmployee.cpp.o -c /home/coquito/supermercado/proyecto/utils/getEmployee.cpp
 
 utils/CMakeFiles/utils.dir/getEmployee.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/utils.dir/getEmployee.cpp.i"
-	cd /home/coquito/supermercado/proyecto/build/utils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/coquito/supermercado/proyecto/utils/getEmployee.cpp > CMakeFiles/utils.dir/getEmployee.cpp.i
+	cd /home/coquito/supermercado/proyecto/build/utils && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/coquito/supermercado/proyecto/utils/getEmployee.cpp > CMakeFiles/utils.dir/getEmployee.cpp.i
 
 utils/CMakeFiles/utils.dir/getEmployee.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/utils.dir/getEmployee.cpp.s"
-	cd /home/coquito/supermercado/proyecto/build/utils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/coquito/supermercado/proyecto/utils/getEmployee.cpp -o CMakeFiles/utils.dir/getEmployee.cpp.s
+	cd /home/coquito/supermercado/proyecto/build/utils && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/coquito/supermercado/proyecto/utils/getEmployee.cpp -o CMakeFiles/utils.dir/getEmployee.cpp.s
 
 # Object files for target utils
 utils_OBJECTS = \
