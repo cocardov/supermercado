@@ -27,6 +27,8 @@ void getFromCmd(std::string_view msj, double* value);
 void getEmployee(Employee* e);
 void getCustomer(Customer* c);
 void displayOptions();
+void displayEmployeeMenu();
+void displayCustomerMenu();
 
 // Variable de control global
 extern bool exitMyProgram;
