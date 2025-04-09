@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/supermercado.dir/main.cpp.o -o supermercado  utils/libutils.a 

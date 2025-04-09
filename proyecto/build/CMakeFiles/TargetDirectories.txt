@@ -1,6 +1,0 @@
-/home/coquito/supermercado/proyecto/build/CMakeFiles/supermercado.dir
-/home/coquito/supermercado/proyecto/build/CMakeFiles/edit_cache.dir
-/home/coquito/supermercado/proyecto/build/CMakeFiles/rebuild_cache.dir
-/home/coquito/supermercado/proyecto/build/utils/CMakeFiles/utils.dir
-/home/coquito/supermercado/proyecto/build/utils/CMakeFiles/edit_cache.dir
-/home/coquito/supermercado/proyecto/build/utils/CMakeFiles/rebuild_cache.dir
