@@ -1,6 +1,9 @@
 #include <iostream>
 #include <limits>
 #include "getEmployee.hh"
+#include <fstream>
+#include <string>
+#include <sstream>
 
 bool exitMyProgram = false;
 
@@ -34,10 +37,56 @@ void getFromCmd(std::string_view msj, double *value)
 }
 
 // imprime texto y toma datos del empleado
-void getEmployee(Employee *e)
+void registerEmployee(Employee *e)
 {
-    getFromCmd("ingrese su nombre: ", &e->name);
-    getFromCmd("ingrese su documento: ", &e->id);
+    std::string idEmployee{};                               //creamos un string que contenga el id del empleado
+    std::string buffer{};                                   //creamos el buffer
+    getFromCmd("ingrese su nombre: ", &e->name);            //inicializamos e.name con el input
+    getFromCmd("ingrese su documento: ", &e->id);           //inicializamos e.id con el input
+    idEmployee.append(e->id);                                   //agregamos el id ingresado al buffer
+
+
+    std::ifstream EmployeesIn;
+    EmployeesIn.open("texts/Employees.txt", std::ios::in);  //abrimos el archivo en modo lectura
+
+    if (EmployeesIn.fail())
+    {
+        std::cout << "no se pudo abrir el archivo.\n";
+    }
+
+    while (!EmployeesIn.eof())                              //mientras no sea el final del archivo
+    {
+        while(getline (EmployeesIn, buffer))
+        {
+            if (idEmployee.compare(buffer) == 0 )
+            {
+                std::cout << "el dni ingresado ya le corresponde a una persona.\n";
+                exit(1);
+                //loginEmployee();
+            }
+        }
+    }
+
+    EmployeesIn.close();
+
+    std::ofstream EmployeesOut;
+    EmployeesOut.open("texts/Employees.txt", std::ios::app);
+
+    if (EmployeesOut.fail())
+    {
+        std::cout << "no se pudo abrir el archivo.\n";
+    }
+
+    buffer.append(e->name);
+    buffer.append("\n");
+    buffer.append(e->id);
+    buffer.append("\n");
+    buffer.append("\n");
+
+    EmployeesOut << buffer;
+
+    EmployeesOut.close();
+
     // se imprimen los distintos volores.
     std::cout << "el documento de " << e->name << " es: " << e->id << '\n';
     std::cout << e->name << " registrado con éxito como Empleado.\n";
@@ -45,11 +94,31 @@ void getEmployee(Employee *e)
 }
 
 // imprime texto y toma los datos del cliente
-void getCustomer(Customer *c)
+void registerCustomer(Customer *c)
 {
     getFromCmd("ingrese su nombre: ", &c->name);
     getFromCmd("ingrese su documento: ", &c->id);
     getFromCmd("ingrese su presupuesto: $", &c->money);
+
+    std::string buffer{};
+    std::ofstream Customers;
+    Customers.open("texts/Customers.txt", std::ios::app);
+
+    if (Customers.fail())
+    {
+        std::cout << "no se pudo abrir el archivo.\n";
+    }
+
+    buffer.append(c->name);
+    buffer.append(", ");
+    buffer.append(c->id);
+    buffer.append(", ");
+    buffer.append(std::to_string(c->money));
+    buffer.append("\n");
+    Customers << buffer;
+
+    Customers.close();
+
     // se imprimen los distintos volores.
     std::cout << "el documento de " << c->name << " es: " << c->id << '\n';
     std::cout << "el presupuesto de " << c->name << " es: $" << c->money << '\n';
@@ -79,7 +148,8 @@ void displayOptions()
         std::cin >> option;
         std::cout << '\n';
 
-            switch (option)
+
+        switch (option)
         {
         case 1:
             displayEmployeeMenu();
@@ -112,7 +182,6 @@ void displayOptions()
 
 } // void displayOptions();
 
-
 // función para imprimir las opciones que tiene un empleado luego de que se elija "opciones para empleados"
 void displayEmployeeMenu()
 {
@@ -133,7 +202,7 @@ void displayEmployeeMenu()
         switch (option)
         {
         case 1:
-            getEmployee(&e);
+            registerEmployee(&e);
             // leer Employees.txt, si concuerda el dni ingresado, proceder con iniciar sesión.
             return;
 
@@ -166,8 +235,6 @@ void displayEmployeeMenu()
 
 } // void displayEmployeeMenu()
 
-
-
 // función para imprimir las opciones que tiene un cliente luego de que se elija "opciones para clientes"
 void displayCustomerMenu()
 {
@@ -188,7 +255,7 @@ void displayCustomerMenu()
         switch (option)
         {
         case 1:
-            getCustomer(&c);
+            registerCustomer(&c);
             // leer Customers.txt, si concuerda el dni ingresado, proceder con iniciar sesión.
             return;
 

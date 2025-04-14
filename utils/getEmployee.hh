@@ -15,7 +15,7 @@ struct Customer
 {
     std::string name;
     std::string id;
-    double money;
+    int money;
 };
 
 // Funciones de entrada desde la consola
@@ -24,8 +24,8 @@ void getFromCmd(std::string_view msj, std::string* value);
 void getFromCmd(std::string_view msj, double* value);
 
 // Funciones específicas del programa
-void getEmployee(Employee* e);
-void getCustomer(Customer* c);
+void registerEmployee(Employee* e);
+void registerCustomer(Customer* c);
 void displayOptions();
 void displayEmployeeMenu();
 void displayCustomerMenu();
