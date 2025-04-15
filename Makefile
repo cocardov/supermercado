@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/joagz/supermercado && $(CMAKE_COMMAND) -E cmake_progress_start /home/joagz/supermercado/CMakeFiles /home/joagz/supermercado/utils//CMakeFiles/progress.marks
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joagz/supermercado/CMakeFiles /home/joagz/supermercado//CMakeFiles/progress.marks
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/joagz/supermercado/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/clean
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
 .PHONY : clean
 
 # The main clean target
@@ -103,56 +103,68 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/preinstall
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/preinstall
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/joagz/supermercado && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-utils/CMakeFiles/utils.dir/rule:
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/CMakeFiles/utils.dir/rule
-.PHONY : utils/CMakeFiles/utils.dir/rule
+#=============================================================================
+# Target rules for targets named supermercado
 
-# Convenience name for target.
-utils: utils/CMakeFiles/utils.dir/rule
+# Build rule for target.
+supermercado: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 supermercado
+.PHONY : supermercado
+
+# fast build rule for target.
+supermercado/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/build
+.PHONY : supermercado/fast
+
+#=============================================================================
+# Target rules for targets named utils
+
+# Build rule for target.
+utils: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils
 .PHONY : utils
 
 # fast build rule for target.
 utils/fast:
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f utils/CMakeFiles/utils.dir/build.make utils/CMakeFiles/utils.dir/build
+	$(MAKE) $(MAKESILENT) -f utils/CMakeFiles/utils.dir/build.make utils/CMakeFiles/utils.dir/build
 .PHONY : utils/fast
 
-getEmployee.o: getEmployee.cpp.o
-.PHONY : getEmployee.o
+main.o: main.cpp.o
+.PHONY : main.o
 
 # target to build an object file
-getEmployee.cpp.o:
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f utils/CMakeFiles/utils.dir/build.make utils/CMakeFiles/utils.dir/getEmployee.cpp.o
-.PHONY : getEmployee.cpp.o
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-getEmployee.i: getEmployee.cpp.i
-.PHONY : getEmployee.i
+main.i: main.cpp.i
+.PHONY : main.i
 
 # target to preprocess a source file
-getEmployee.cpp.i:
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f utils/CMakeFiles/utils.dir/build.make utils/CMakeFiles/utils.dir/getEmployee.cpp.i
-.PHONY : getEmployee.cpp.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-getEmployee.s: getEmployee.cpp.s
-.PHONY : getEmployee.s
+main.s: main.cpp.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-getEmployee.cpp.s:
-	cd /home/joagz/supermercado && $(MAKE) $(MAKESILENT) -f utils/CMakeFiles/utils.dir/build.make utils/CMakeFiles/utils.dir/getEmployee.cpp.s
-.PHONY : getEmployee.cpp.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -162,10 +174,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... supermercado"
 	@echo "... utils"
-	@echo "... getEmployee.o"
-	@echo "... getEmployee.i"
-	@echo "... getEmployee.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
@@ -177,6 +190,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/joagz/supermercado && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

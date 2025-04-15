@@ -1,0 +1,6 @@
+/home/joagz/supermercado/CMakeFiles/supermercado.dir
+/home/joagz/supermercado/CMakeFiles/edit_cache.dir
+/home/joagz/supermercado/CMakeFiles/rebuild_cache.dir
+/home/joagz/supermercado/utils/CMakeFiles/utils.dir
+/home/joagz/supermercado/utils/CMakeFiles/edit_cache.dir
+/home/joagz/supermercado/utils/CMakeFiles/rebuild_cache.dir
