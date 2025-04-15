@@ -42,11 +42,10 @@ void registerEmployee(Employee *e)
     std::cout << "-------------------------------------------------------\n";
     std::cout << "Registro de un nuevo empleado:\n";
 
-    std::string idEmployee{};                     // creamos un string que contenga el id del empleado
-    std::string buffer{};                         // creamos el buffer
+    // UPDATE: eliminamos idEmployee ya que es una copia de e->id
+    std::string buffer;
     getFromCmd("ingrese su nombre: ", &e->name);  // inicializamos e.name con el input
     getFromCmd("ingrese su documento: ", &e->id); // inicializamos e.id con el input
-    idEmployee.append(e->id);                     // agregamos el id ingresado al buffer
 
     std::ifstream EmployeesIn;
     EmployeesIn.open("texts/Employees.txt", std::ios::in); // abrimos el archivo en modo lectura
@@ -60,11 +59,11 @@ void registerEmployee(Employee *e)
     {
         while (getline(EmployeesIn, buffer)) // recorre línea por línea
         {
-            if (idEmployee.compare(buffer) == 0) // si una línea coincide con el id recién ingresado:
+            if (e->id.compare(buffer) == 0) // si una línea coincide con el id recién ingresado:
             {
                 std::cout << '\n';
                 std::cout << "El dni ingresado ya le corresponde a una persona.\n";
-                std::cout << "El dni que intentó ingresar es: " << idEmployee << '\n';
+                std::cout << "El dni que intentó ingresar es: " << e->id << '\n';
                 std::cout << "Volver a escribir el dni?\n";
                 std::cout << '\n';
                 std::cout << "1. Sí. (corregir el dni ingresado)\n";
@@ -111,13 +110,12 @@ void registerEmployee(Employee *e)
         std::cout << "no se pudo abrir el archivo.\n";
     }
 
-    buffer.append(e->name); // guarda en el buffer los datos ingresados, cada uno en una línea nueva
-    buffer.append("\n");    // en total son 3 líneas (nombre, id, separación)
-    buffer.append(e->id);
-    buffer.append("\n");
-    buffer.append("\n");
-
-    EmployeesOut << buffer; // escribe en el archivo las 3 líneas del buffer
+    // UPDATE: en vez de usar el buffer, escribimos directamente
+    EmployeesOut << e->name;
+    EmployeesOut << "\n";
+    EmployeesOut << e->id;
+    EmployeesOut << "\n";
+    EmployeesOut << "\n";
 
     EmployeesOut.close(); // cierra el archivo
 
@@ -136,12 +134,11 @@ void registerCustomer(Customer *c)
     std::cout << "-------------------------------------------------------\n";
     std::cout << "Registro de un nuevo cliente:\n";
 
+    // UPDATE: eliminamos idCostumer porque es una copia de c->id
     std::string buffer{};
-    std::string idCustomer{};
     getFromCmd("ingrese su nombre: ", &c->name);
     getFromCmd("ingrese su documento: ", &c->id);
     getFromCmd("ingrese su presupuesto: $", &c->money);
-    idCustomer.append(c->id);
 
     std::ifstream CustomersIn;
     CustomersIn.open("texts/Customers.txt", std::ios::in); // abrimos el archivo en modo lectura
@@ -155,11 +152,11 @@ void registerCustomer(Customer *c)
     {
         while (getline(CustomersIn, buffer)) // recorre línea por línea
         {
-            if (idCustomer.compare(buffer) == 0) // si una línea coincide con el id recién ingresado:
+            if (c->id.compare(buffer) == 0) // si una línea coincide con el id recién ingresado:
             {
                 std::cout << '\n';
                 std::cout << "El dni ingresado ya le corresponde a una persona.\n";
-                std::cout << "El dni que intentó ingresar es: " << idCustomer << '\n';
+                std::cout << "El dni que intentó ingresar es: " << c->id << '\n';
                 std::cout << "Volver a escribir el dni?\n";
                 std::cout << '\n';
                 std::cout << "1. Sí. (corregir el dni ingresado)\n";
@@ -206,14 +203,14 @@ void registerCustomer(Customer *c)
         std::cout << "no se pudo abrir el archivo.\n";
     }
 
-    buffer.append(c->name);
-    buffer.append("\n");
-    buffer.append(c->id);
-    buffer.append("\n");
-    buffer.append(std::to_string(c->money));
-    buffer.append("\n");
-    buffer.append("\n");
-    CustomersOut << buffer;
+    // UPDATE: en vez de escribir al buffer, escribimos directamente al archivo
+    CustomersOut << c->name;
+    CustomersOut << "\n";
+    CustomersOut << c->id;
+    CustomersOut << "\n";
+    CustomersOut << std::to_string(c->money);
+    CustomersOut << "\n";
+    CustomersOut << "\n";
 
     CustomersOut.close();
 
