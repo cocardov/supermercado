@@ -1,12 +1,3 @@
-constanzo Tironi
-48134080
-100
-
-constanzo tironi
-48134081
-1000
-
-Kali
-098765432
-900000000
-
+Constanzo Tironi,48134080,100
+lalallaal,48134080,1
+slslls,48134080,1

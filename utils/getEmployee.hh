@@ -3,6 +3,7 @@
 
 #include <string>
 #include <string_view>
+#include <vector>
 
 // Estructuras para almacenar datos
 struct Employee
@@ -29,6 +30,9 @@ void registerCustomer(Customer* c);
 void displayOptions();
 void displayEmployeeMenu();
 void displayCustomerMenu();
+void loginEmployee();
+void loginCustomer();
+std::vector<std::string> commaSeparatedText(std::string buffer);
 
 // Variable de control global
 extern bool exitMyProgram;

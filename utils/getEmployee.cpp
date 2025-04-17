@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <vector>
 
 bool exitMyProgram = false;
 
@@ -36,7 +37,7 @@ void getFromCmd(std::string_view msj, double *value)
     std::cin >> (*value);
 }
 
-// imprime texto y toma datos del empleado
+// función llamada en displayEmployeeMenu()
 void registerEmployee(Employee *e)
 {
     std::cout << "-------------------------------------------------------\n";
@@ -59,7 +60,9 @@ void registerEmployee(Employee *e)
     {
         while (getline(EmployeesIn, buffer)) // recorre línea por línea
         {
-            if (e->id.compare(buffer) == 0) // si una línea coincide con el id recién ingresado:
+            std::vector<std::string> token{commaSeparatedText(buffer)};
+
+            if (e->id.compare(token.at(1)) == 0) // si una línea coincide con el id recién ingresado:
             {
                 std::cout << '\n';
                 std::cout << "El dni ingresado ya le corresponde a una persona.\n";
@@ -84,21 +87,21 @@ void registerEmployee(Employee *e)
 
                     case 2:
                         return;
-                        //loginEmployee();
+                        // loginEmployee();
 
                     default:
                         std::cout << "ingresá un caracter válido.\n";
                         break;
                     }
-                }//while (true) de corregir el dni ingresado
+                } // while (true) de corregir el dni ingresado
 
-                //nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerEmployee()
-            
-            }//if coincide el dni ingresado con uno ya escrito
+                // nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerEmployee()
 
-        }//while (getline(EmployeesIn, buffer)) // recorre línea por línea
+            } // if coincide el dni ingresado con uno ya escrito
 
-    }//while (!EmployeesIn.eof()) // mientras no sea el final del archivo
+        } // while (getline(EmployeesIn, buffer)) // recorre línea por línea
+
+    } // while (!EmployeesIn.eof()) // mientras no sea el final del archivo
 
     EmployeesIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
 
@@ -112,9 +115,8 @@ void registerEmployee(Employee *e)
 
     // UPDATE: en vez de usar el buffer, escribimos directamente
     EmployeesOut << e->name;
-    EmployeesOut << "\n";
+    EmployeesOut << ",";
     EmployeesOut << e->id;
-    EmployeesOut << "\n";
     EmployeesOut << "\n";
 
     EmployeesOut.close(); // cierra el archivo
@@ -124,11 +126,9 @@ void registerEmployee(Employee *e)
     std::cout << e->name << " registrado con éxito como Empleado.\n";
     std::cout << '\n';
 
-}//void registerEmployee(Employee *e)
+} // void registerEmployee(Employee *e)
 
-
-
-// imprime texto y toma los datos del cliente
+// función llamada en displayCustomerMenu()
 void registerCustomer(Customer *c)
 {
     std::cout << "-------------------------------------------------------\n";
@@ -152,7 +152,9 @@ void registerCustomer(Customer *c)
     {
         while (getline(CustomersIn, buffer)) // recorre línea por línea
         {
-            if (c->id.compare(buffer) == 0) // si una línea coincide con el id recién ingresado:
+            std::vector<std::string> token{commaSeparatedText(buffer)};
+
+            if (c->id.compare(token.at(1)) == 0) // si una línea coincide con el id recién ingresado:
             {
                 std::cout << '\n';
                 std::cout << "El dni ingresado ya le corresponde a una persona.\n";
@@ -177,21 +179,21 @@ void registerCustomer(Customer *c)
 
                     case 2:
                         return;
-                        //loginCustomer();
+                        // loginCustomer();
                     default:
                         std::cout << "ingresá un caracter válido.\n";
                         break;
                     }
 
-                }//while (true) de corregir el dni ingresado
+                } // while (true) de corregir el dni ingresado
 
-                //nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerCustomer()
-            
-            }//if coincide el dni ingresado con uno ya escrito
+                // nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerCustomer()
 
-        }// while (getline(CustomersIn, buffer))
-        
-    }//while (!CustomersIn.eof())
+            } // if coincide el dni ingresado con uno ya escrito
+
+        } // while (getline(CustomersIn, buffer))
+
+    } // while (!CustomersIn.eof())
 
     CustomersIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
 
@@ -205,11 +207,10 @@ void registerCustomer(Customer *c)
 
     // UPDATE: en vez de escribir al buffer, escribimos directamente al archivo
     CustomersOut << c->name;
-    CustomersOut << "\n";
+    CustomersOut << ",";
     CustomersOut << c->id;
-    CustomersOut << "\n";
+    CustomersOut << ",";
     CustomersOut << std::to_string(c->money);
-    CustomersOut << "\n";
     CustomersOut << "\n";
 
     CustomersOut.close();
@@ -220,11 +221,9 @@ void registerCustomer(Customer *c)
     std::cout << c->name << " registrado con éxito como Cliente.\n";
     std::cout << '\n';
 
-}//void registerCustomer(Customer *c)
+} // void registerCustomer(Customer *c)
 
-
-
-// imprime un switch de las opciones que puede realizar la persona
+// función llamada en main()
 void displayOptions()
 {
     std::cout << '\n';
@@ -264,7 +263,7 @@ void displayOptions()
             std::cout << "esperamos haya disfrutado la experiencia\n";
 
             exitMyProgram = true; // para cerrar el while de main()
-            return; //vuelve al main()
+            return;               // vuelve al main()
 
         default:
             std::cout << '\n';
@@ -281,9 +280,7 @@ void displayOptions()
 
 } // void displayOptions();
 
-
-
-// función para imprimir las opciones que tiene un empleado luego de que se elija "opciones para empleados"
+// función llamada en displayOptions()
 void displayEmployeeMenu()
 {
     std::cout << "Opciones para empleados:\n";
@@ -339,9 +336,7 @@ void displayEmployeeMenu()
 
 } // void displayEmployeeMenu()
 
-
-
-// función para imprimir las opciones que tiene un cliente luego de que se elija "opciones para clientes"
+// función llamada en displayOptions()
 void displayCustomerMenu()
 {
     std::cout << "Opciones para clientes:\n";
@@ -368,8 +363,8 @@ void displayCustomerMenu()
             return;
 
         case 2:
-            //loginCustomer()
-            // aceptar un dni de entrada, si el dni no concuerda con ninguno de Customers.txt, proceder con registrar.
+            // loginCustomer()
+            //  aceptar un dni de entrada, si el dni no concuerda con ninguno de Customers.txt, proceder con registrar.
             return;
 
         case 3:
@@ -395,3 +390,23 @@ void displayCustomerMenu()
     // nunca se llega a ejecutar este pedazo de código porque los return del while(true) salen de displayCustomerMenu()
 
 } // void displayCustomerMenu()
+
+
+// loginEmployee()
+
+// loginCustomer()
+
+//devuelve un vector con los tokens (datos) separados después de cada coma
+std::vector<std::string> commaSeparatedText(std::string buffer)
+{
+    std::stringstream ss(buffer);
+    std::string token;
+    std::vector<std::string> tokens; 
+
+    while (std::getline(ss, token, ',')) //busca en el buffer y escribe hasta encontrar una ",". guarda lo que encontró en el índice correspondiente
+    {
+        tokens.push_back(token); //mete un elemento en el indice correspondiente, arrancando de 0.
+    };
+
+    return tokens;
+}
