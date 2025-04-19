@@ -1,0 +1,4 @@
+producto 1,5,$100
+producto 2,40,$1500
+producto 3,1234,$999
+producto 4,1,$30

@@ -19,6 +19,13 @@ struct Customer
     int money;
 };
 
+struct Product
+{
+    std::string name;
+    std::string amount;
+    std::string price;
+};
+
 // Funciones de entrada desde la consola
 void getFromCmd(std::string_view msj, int* value);
 void getFromCmd(std::string_view msj, std::string* value);
@@ -33,6 +40,11 @@ void displayCustomerMenu();
 void loginEmployee(Employee* e);
 void loginCustomer(Customer* c);
 std::vector<std::string> commaSeparatedText(std::string buffer);
+void printEmployeeOptions();
+void printCustomerOptions();
+void writeProducts(Product* p);
+void printProducts(Product* p);
+
 
 // Variable de control global
 extern bool exitMyProgram;

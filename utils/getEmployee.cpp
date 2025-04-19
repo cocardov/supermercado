@@ -422,7 +422,7 @@ void loginEmployee(Employee *e)
         {
             std::cout << "El dni ingresado le corresponde a " << token.at(0) << '\n';
             std::cout << "Iniciando sesión.\n";
-            // printEmployeeOptions();
+            printEmployeeOptions();
             EmployeesIn.close();
             return; // vuelve al main()
         }
@@ -474,7 +474,7 @@ void loginEmployee(Employee *e)
 
     EmployeesIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
 
-}//loginEmployee(Employee* e)
+} // loginEmployee(Employee* e)
 
 // inicia sesión a un cliente mediante el dni
 void loginCustomer(Customer *c)
@@ -495,9 +495,9 @@ void loginCustomer(Customer *c)
 
     while (getline(CustomersIn, buffer)) // recorre línea por línea
     {
-        std::vector<std::string> token{commaSeparatedText(buffer)}; //copia la línea al buffer
+        std::vector<std::string> token{commaSeparatedText(buffer)}; // copia la línea al buffer
 
-        if (c->id.compare(token.at(1)) == 0) //si el dni recién ingresado coincide con el de la línea:
+        if (c->id.compare(token.at(1)) == 0) // si el dni recién ingresado coincide con el de la línea:
         {
             std::cout << "El dni ingresado le corresponde a " << token.at(0) << '\n';
             std::cout << "Iniciando sesión.\n";
@@ -505,11 +505,11 @@ void loginCustomer(Customer *c)
             CustomersIn.close();
             return; // vuelve al main()
         }
-        else //sino, continúa
+        else // sino, continúa
             continue;
     } // while (getline(CustomersIn, buffer)) // recorre línea por línea
 
-    if (CustomersIn.eof()) //si llega al fin del archivo sin encontrar ninguna coincidencia:
+    if (CustomersIn.eof()) // si llega al fin del archivo sin encontrar ninguna coincidencia:
     {
         std::cout << "el dni ingresado no coincidió con ninguno de la base de datos.\n";
         std::cout << "el dni que intentaste ingresar fue: " << c->id << "\n";
@@ -540,13 +540,118 @@ void loginCustomer(Customer *c)
             default:
                 std::cout << "ingresá un caracter válido.\n";
                 break;
-            } //switch(option)
+            } // switch(option)
 
-        }//while(true) de corregir el dni recién ingresado
+        } // while(true) de corregir el dni recién ingresado
 
         // nunca se llega a ejecutar este pedazo de código, los return del while true salen de loginCustomer()
 
-    }//if (CustomersIn.eof())
+    } // if (CustomersIn.eof())
 
     CustomersIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
-}//loginCustomer(Customer* c)
+} // loginCustomer(Customer* c)
+
+void printEmployeeOptions()
+{
+    
+    
+    Product p{}; // inicializamos un struct Product p para almacenar los datos del producto
+    
+    while (true)
+    {
+        std::cout << '\n';
+        std::cout << "-------------------------------------------------------\n";
+        std::cout << "Opciones de empleado:\n";
+        std::cout << '\n';
+        std::cout << "1. Cargar un nuevo producto.\n";
+        std::cout << "2. Imprimir lista de productos.\n";
+        std::cout << "3. Log Out (volver al menú principal).\n";
+        std::cout << "4. Salir.\n";
+        std::cout << '\n';
+        
+        std::string optionStr;
+        std::cin >> optionStr;
+        std::cout << '\n';
+        
+        int option = std::atoi(optionStr.c_str());
+        switch (option)
+        {
+        case 1:
+            writeProducts(&p);
+            break;
+
+        case 2:
+            printProducts(&p);
+            break;
+
+        case 3:
+            return;
+
+        case 4:
+            exitMyProgram = true;
+            return;
+
+        default:
+            std::cout << "ingresá un caracter válido.\n";
+            break;
+
+        } // switch(option)
+
+    } // while (!exit)
+
+} // printEmployeeOptions()
+
+void printCustomerOptions()
+{
+}
+
+// función que toma datos de un producto y los escribe en Products.txt
+void writeProducts(Product *p)
+{
+    std::cout << '\n';
+    std::cout << "-------------------------------------------------------\n";
+    getFromCmd("Ingrese el nombre del producto: ", &p->name);
+    getFromCmd("Ingrese la cantidad de productos: ", &p->amount);
+    getFromCmd("Ingrese el precio del producto [incluya el signo '$']: ", &p->price);
+
+    std::ofstream ProductsOut; // y abre uno en modo escritura (append)
+    ProductsOut.open("texts/Products.txt", std::ios::app);
+
+    if (ProductsOut.fail())
+    {
+        std::cout << "no se pudo abrir el archivo.\n";
+    }
+
+    // UPDATE: en vez de usar el buffer, escribimos directamente
+    ProductsOut << p->name;
+    ProductsOut << ",";
+    ProductsOut << p->amount;
+    ProductsOut << ",";
+    ProductsOut << p->price;
+    ProductsOut << '\n';
+
+    ProductsOut.close(); // cierra el archivo
+
+} // void writeProducts(Product* p)
+
+void printProducts(Product *p)
+{
+    std::string buffer;
+    std::ifstream ProductsIn;
+    ProductsIn.open("texts/Products.txt", std::ios::in); // abrimos el archivo en modo lectura
+
+    if (ProductsIn.fail())
+    {
+        std::cout << "no se pudo abrir el archivo.\n";
+    }
+
+    while (getline(ProductsIn, buffer)) // recorre línea por línea
+    {
+        std::cout << buffer << '\n';
+    }
+
+    if (ProductsIn.eof())
+        ProductsIn.close();
+
+    ProductsIn.close();
+} // voidreadProducts(Product* p)
