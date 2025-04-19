@@ -30,8 +30,8 @@ void registerCustomer(Customer* c);
 void displayOptions();
 void displayEmployeeMenu();
 void displayCustomerMenu();
-void loginEmployee();
-void loginCustomer();
+void loginEmployee(Employee* e);
+void loginCustomer(Customer* c);
 std::vector<std::string> commaSeparatedText(std::string buffer);
 
 // Variable de control global

@@ -56,52 +56,49 @@ void registerEmployee(Employee *e)
         std::cout << "no se pudo abrir el archivo.\n";
     }
 
-    while (!EmployeesIn.eof()) // mientras no sea el final del archivo
+    while (getline(EmployeesIn, buffer)) // recorre línea por línea
     {
-        while (getline(EmployeesIn, buffer)) // recorre línea por línea
+        std::vector<std::string> token{commaSeparatedText(buffer)};
+
+        if (e->id.compare(token.at(1)) == 0) // si una línea coincide con el id recién ingresado:
         {
-            std::vector<std::string> token{commaSeparatedText(buffer)};
+            std::cout << '\n';
+            std::cout << "El dni ingresado ya le corresponde a una persona.\n";
+            std::cout << "El dni que intentó ingresar es: " << e->id << '\n';
+            std::cout << "Volver a escribir el dni?\n";
+            std::cout << '\n';
+            std::cout << "1. Sí. (corregir el dni ingresado)\n";
+            std::cout << "2. No. (continuar con el inicio de sesión)\n";
 
-            if (e->id.compare(token.at(1)) == 0) // si una línea coincide con el id recién ingresado:
+            while (true)
             {
+                std::string optionStr;
+                std::cin >> optionStr;
                 std::cout << '\n';
-                std::cout << "El dni ingresado ya le corresponde a una persona.\n";
-                std::cout << "El dni que intentó ingresar es: " << e->id << '\n';
-                std::cout << "Volver a escribir el dni?\n";
-                std::cout << '\n';
-                std::cout << "1. Sí. (corregir el dni ingresado)\n";
-                std::cout << "2. No. (continuar con el inicio de sesión)\n";
 
-                while (true)
+                int option = std::atoi(optionStr.c_str());
+                switch (option)
                 {
-                    std::string optionStr;
-                    std::cin >> optionStr;
-                    std::cout << '\n';
+                case 1:
+                    registerEmployee(e);
+                    return;
 
-                    int option = std::atoi(optionStr.c_str());
-                    switch (option)
-                    {
-                    case 1:
-                        registerEmployee(e);
-                        return;
+                case 2:
+                    EmployeesIn.close();
+                    return;
+                    // loginEmployee();
 
-                    case 2:
-                        return;
-                        // loginEmployee();
+                default:
+                    std::cout << "ingresá un caracter válido.\n";
+                    break;
+                }
+            } // while (true) de corregir el dni ingresado
 
-                    default:
-                        std::cout << "ingresá un caracter válido.\n";
-                        break;
-                    }
-                } // while (true) de corregir el dni ingresado
+            // nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerEmployee()
 
-                // nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerEmployee()
+        } // if coincide el dni ingresado con uno ya escrito
 
-            } // if coincide el dni ingresado con uno ya escrito
-
-        } // while (getline(EmployeesIn, buffer)) // recorre línea por línea
-
-    } // while (!EmployeesIn.eof()) // mientras no sea el final del archivo
+    } // while (getline(EmployeesIn, buffer)) // recorre línea por línea
 
     EmployeesIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
 
@@ -148,52 +145,49 @@ void registerCustomer(Customer *c)
         std::cout << "no se pudo abrir el archivo.\n";
     }
 
-    while (!CustomersIn.eof()) // mientras no sea el final del archivo
+    while (getline(CustomersIn, buffer)) // recorre línea por línea
     {
-        while (getline(CustomersIn, buffer)) // recorre línea por línea
+        std::vector<std::string> token{commaSeparatedText(buffer)};
+
+        if (c->id.compare(token.at(1)) == 0) // si una línea coincide con el id recién ingresado:
         {
-            std::vector<std::string> token{commaSeparatedText(buffer)};
+            std::cout << '\n';
+            std::cout << "El dni ingresado ya le corresponde a una persona.\n";
+            std::cout << "El dni que intentó ingresar es: " << c->id << '\n';
+            std::cout << "Volver a escribir el dni?\n";
+            std::cout << '\n';
+            std::cout << "1. Sí. (corregir el dni ingresado)\n";
+            std::cout << "2. No. (continuar con el inicio de sesión)\n";
 
-            if (c->id.compare(token.at(1)) == 0) // si una línea coincide con el id recién ingresado:
+            while (true)
             {
+                std::string optionStr;
+                std::cin >> optionStr;
                 std::cout << '\n';
-                std::cout << "El dni ingresado ya le corresponde a una persona.\n";
-                std::cout << "El dni que intentó ingresar es: " << c->id << '\n';
-                std::cout << "Volver a escribir el dni?\n";
-                std::cout << '\n';
-                std::cout << "1. Sí. (corregir el dni ingresado)\n";
-                std::cout << "2. No. (continuar con el inicio de sesión)\n";
 
-                while (true)
+                int option = std::atoi(optionStr.c_str());
+                switch (option)
                 {
-                    std::string optionStr;
-                    std::cin >> optionStr;
-                    std::cout << '\n';
+                case 1:
+                    registerCustomer(c);
+                    return;
 
-                    int option = std::atoi(optionStr.c_str());
-                    switch (option)
-                    {
-                    case 1:
-                        registerCustomer(c);
-                        return;
+                case 2:
+                    return;
 
-                    case 2:
-                        return;
-                        // loginCustomer();
-                    default:
-                        std::cout << "ingresá un caracter válido.\n";
-                        break;
-                    }
+                    // loginCustomer();
+                default:
+                    std::cout << "ingresá un caracter válido.\n";
+                    break;
+                }
 
-                } // while (true) de corregir el dni ingresado
+            } // while (true) de corregir el dni ingresado
 
-                // nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerCustomer()
+            // nunca se llega a ejecutar este pedazo de código, los return del while true salen de registerCustomer()
 
-            } // if coincide el dni ingresado con uno ya escrito
+        } // if coincide el dni ingresado con uno ya escrito
 
-        } // while (getline(CustomersIn, buffer))
-
-    } // while (!CustomersIn.eof())
+    } // while (getline(CustomersIn, buffer))
 
     CustomersIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
 
@@ -304,12 +298,10 @@ void displayEmployeeMenu()
         {
         case 1:
             registerEmployee(&e);
-            // leer Employees.txt, si concuerda el dni ingresado, proceder con iniciar sesión.
             return;
 
         case 2:
-
-            // aceptar un dni de entrada, si el dni no concuerda con ninguno de Employees.txt, proceder con registrar.
+            loginEmployee(&e);
             return;
 
         case 3:
@@ -363,8 +355,7 @@ void displayCustomerMenu()
             return;
 
         case 2:
-            // loginCustomer()
-            //  aceptar un dni de entrada, si el dni no concuerda con ninguno de Customers.txt, proceder con registrar.
+            loginCustomer(&c);
             return;
 
         case 3:
@@ -391,22 +382,171 @@ void displayCustomerMenu()
 
 } // void displayCustomerMenu()
 
-
-// loginEmployee()
-
-// loginCustomer()
-
-//devuelve un vector con los tokens (datos) separados después de cada coma
+// devuelve un vector con los tokens (datos) separados después de cada coma
 std::vector<std::string> commaSeparatedText(std::string buffer)
 {
     std::stringstream ss(buffer);
     std::string token;
-    std::vector<std::string> tokens; 
+    std::vector<std::string> tokens;
 
-    while (std::getline(ss, token, ',')) //busca en el buffer y escribe hasta encontrar una ",". guarda lo que encontró en el índice correspondiente
+    while (std::getline(ss, token, ',')) // busca en el buffer y escribe hasta encontrar una ",". guarda lo que encontró en el índice correspondiente
     {
-        tokens.push_back(token); //mete un elemento en el indice correspondiente, arrancando de 0.
+        tokens.push_back(token); // mete un elemento en el indice correspondiente, arrancando de 0.
     };
 
     return tokens;
 }
+
+// inicia sesión a un empleado mediante el dni
+void loginEmployee(Employee *e)
+{
+    std::cout << "-------------------------------------------------------\n";
+    std::cout << "Inicio de sesión de un empleado:\n";
+
+    std::string buffer;
+    getFromCmd("ingrese su documento: ", &e->id); // inicializamos e.id con el input
+
+    std::ifstream EmployeesIn;
+    EmployeesIn.open("texts/Employees.txt", std::ios::in); // abrimos el archivo en modo lectura
+
+    if (EmployeesIn.fail())
+    {
+        std::cout << "no se pudo abrir el archivo.\n";
+    }
+
+    while (getline(EmployeesIn, buffer)) // recorre línea por línea
+    {
+        std::vector<std::string> token{commaSeparatedText(buffer)}; // copia la línea en el buffer
+
+        if (e->id.compare(token.at(1)) == 0) // si el dni recién ingresado es el mismo al de la línea leída
+        {
+            std::cout << "El dni ingresado le corresponde a " << token.at(0) << '\n';
+            std::cout << "Iniciando sesión.\n";
+            // printEmployeeOptions();
+            EmployeesIn.close();
+            return; // vuelve al main()
+        }
+
+        else // si no encuentra coincidencia, sigue a la siguiente línea
+            continue;
+
+    } // while (getline(EmployeesIn, buffer)) // recorre línea por línea
+
+    if (EmployeesIn.eof()) // si llega al fin del archivo sin encontrar ninguna coincidencia:
+    {
+        std::cout << "el dni ingresado no coincidió con ninguno de la base de datos.\n";
+        std::cout << "el dni que intentaste ingresar fue: " << e->id << "\n";
+        std::cout << "Volver a escribir el dni?\n";
+        std::cout << '\n';
+        std::cout << "1. Sí. (corregir el dni ingresado)\n";
+        std::cout << "2. No. (continuar con el registro)\n";
+
+        while (true)
+        {
+            std::string optionStr;
+            std::cin >> optionStr;
+            std::cout << '\n';
+
+            int option = std::atoi(optionStr.c_str());
+            switch (option)
+            {
+            case 1:
+                EmployeesIn.close();
+                loginEmployee(e);
+                return; // vuelve al main()
+
+            case 2:
+                EmployeesIn.close();
+                registerEmployee(e);
+                return; // vuelve al main()
+
+            default:
+                std::cout << "ingresá un caracter válido.\n";
+                break;
+
+            } // switch(option)
+
+        } // while(true) de corregir el dni recién ingresado
+
+        // nunca se llega a ejecutar este pedazo de código, los return del while true salen de loginEmployee()
+
+    } // if (EmployeesIn.eof())
+
+    EmployeesIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
+
+}//loginEmployee(Employee* e)
+
+// inicia sesión a un cliente mediante el dni
+void loginCustomer(Customer *c)
+{
+    std::cout << "-------------------------------------------------------\n";
+    std::cout << "Inicio de sesión de un cliente:\n";
+
+    std::string buffer;
+    getFromCmd("ingrese su documento: ", &c->id); // inicializamos c.id con el input
+
+    std::ifstream CustomersIn;
+    CustomersIn.open("texts/Customers.txt", std::ios::in); // abrimos el archivo en modo lectura
+
+    if (CustomersIn.fail())
+    {
+        std::cout << "no se pudo abrir el archivo.\n";
+    }
+
+    while (getline(CustomersIn, buffer)) // recorre línea por línea
+    {
+        std::vector<std::string> token{commaSeparatedText(buffer)}; //copia la línea al buffer
+
+        if (c->id.compare(token.at(1)) == 0) //si el dni recién ingresado coincide con el de la línea:
+        {
+            std::cout << "El dni ingresado le corresponde a " << token.at(0) << '\n';
+            std::cout << "Iniciando sesión.\n";
+            // printCustomerOptions();
+            CustomersIn.close();
+            return; // vuelve al main()
+        }
+        else //sino, continúa
+            continue;
+    } // while (getline(CustomersIn, buffer)) // recorre línea por línea
+
+    if (CustomersIn.eof()) //si llega al fin del archivo sin encontrar ninguna coincidencia:
+    {
+        std::cout << "el dni ingresado no coincidió con ninguno de la base de datos.\n";
+        std::cout << "el dni que intentaste ingresar fue: " << c->id << "\n";
+        std::cout << "Volver a escribir el dni?\n";
+        std::cout << '\n';
+        std::cout << "1. Sí. (corregir el dni ingresado)\n";
+        std::cout << "2. No. (continuar con el registro)\n";
+
+        while (true)
+        {
+            std::string optionStr;
+            std::cin >> optionStr;
+            std::cout << '\n';
+
+            int option = std::atoi(optionStr.c_str());
+            switch (option)
+            {
+            case 1:
+                CustomersIn.close();
+                loginCustomer(c);
+                return; // vuelve al main()
+
+            case 2:
+                CustomersIn.close();
+                registerCustomer(c);
+                return; // vuelve al main()
+
+            default:
+                std::cout << "ingresá un caracter válido.\n";
+                break;
+            } //switch(option)
+
+        }//while(true) de corregir el dni recién ingresado
+
+        // nunca se llega a ejecutar este pedazo de código, los return del while true salen de loginCustomer()
+
+    }//if (CustomersIn.eof())
+
+    CustomersIn.close(); // si no hay coincidencias cierra el archivo de modo lectura
+}//loginCustomer(Customer* c)
