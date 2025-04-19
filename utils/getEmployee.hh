@@ -16,7 +16,7 @@ struct Customer
 {
     std::string name;
     std::string id;
-    int money;
+    std::string money;
 };
 
 struct Product
@@ -41,9 +41,9 @@ void loginEmployee(Employee* e);
 void loginCustomer(Customer* c);
 std::vector<std::string> commaSeparatedText(std::string buffer);
 void printEmployeeOptions();
-void printCustomerOptions();
+void printCustomerOptions(Customer* c);
 void writeProducts(Product* p);
-void printProducts(Product* p);
+void printProducts();
 
 
 // Variable de control global

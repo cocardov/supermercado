@@ -118,10 +118,7 @@ void registerEmployee(Employee *e)
 
     EmployeesOut.close(); // cierra el archivo
 
-    // se imprimen los datos del empleado recién registrado
-    std::cout << "el documento de " << e->name << " es: " << e->id << '\n';
-    std::cout << e->name << " registrado con éxito como Empleado.\n";
-    std::cout << '\n';
+    printEmployeeOptions();
 
 } // void registerEmployee(Employee *e)
 
@@ -131,11 +128,10 @@ void registerCustomer(Customer *c)
     std::cout << "-------------------------------------------------------\n";
     std::cout << "Registro de un nuevo cliente:\n";
 
-    // UPDATE: eliminamos idCostumer porque es una copia de c->id
     std::string buffer{};
     getFromCmd("ingrese su nombre: ", &c->name);
     getFromCmd("ingrese su documento: ", &c->id);
-    getFromCmd("ingrese su presupuesto: $", &c->money);
+    getFromCmd("ingrese su presupuesto [incluya '$']: ", &c->money);
 
     std::ifstream CustomersIn;
     CustomersIn.open("texts/Customers.txt", std::ios::in); // abrimos el archivo en modo lectura
@@ -204,16 +200,12 @@ void registerCustomer(Customer *c)
     CustomersOut << ",";
     CustomersOut << c->id;
     CustomersOut << ",";
-    CustomersOut << std::to_string(c->money);
+    CustomersOut << c->money;
     CustomersOut << "\n";
 
     CustomersOut.close();
 
-    // se imprimen los distintos volores.
-    std::cout << "el documento de " << c->name << " es: " << c->id << '\n';
-    std::cout << "el presupuesto de " << c->name << " es: $" << c->money << '\n';
-    std::cout << c->name << " registrado con éxito como Cliente.\n";
-    std::cout << '\n';
+    printCustomerOptions(c);
 
 } // void registerCustomer(Customer *c)
 
@@ -501,7 +493,12 @@ void loginCustomer(Customer *c)
         {
             std::cout << "El dni ingresado le corresponde a " << token.at(0) << '\n';
             std::cout << "Iniciando sesión.\n";
-            // printCustomerOptions();
+
+            c->name = token.at(0); // le asigna al cliente los valores que se extraen de la línea de Customers.txt
+            c->id = token.at(1);
+            c->money = token.at(2);
+
+            printCustomerOptions(c);
             CustomersIn.close();
             return; // vuelve al main()
         }
@@ -553,10 +550,9 @@ void loginCustomer(Customer *c)
 
 void printEmployeeOptions()
 {
-    
-    
+
     Product p{}; // inicializamos un struct Product p para almacenar los datos del producto
-    
+
     while (true)
     {
         std::cout << '\n';
@@ -568,11 +564,11 @@ void printEmployeeOptions()
         std::cout << "3. Log Out (volver al menú principal).\n";
         std::cout << "4. Salir.\n";
         std::cout << '\n';
-        
+
         std::string optionStr;
         std::cin >> optionStr;
         std::cout << '\n';
-        
+
         int option = std::atoi(optionStr.c_str());
         switch (option)
         {
@@ -581,7 +577,7 @@ void printEmployeeOptions()
             break;
 
         case 2:
-            printProducts(&p);
+            printProducts();
             break;
 
         case 3:
@@ -597,12 +593,55 @@ void printEmployeeOptions()
 
         } // switch(option)
 
-    } // while (!exit)
+    } // while (true)
 
 } // printEmployeeOptions()
 
-void printCustomerOptions()
+void printCustomerOptions(Customer *c)
 {
+    while (true)
+    {
+
+        std::cout << '\n';
+        std::cout << "-------------------------------------------------------\n";
+        std::cout << "Opciones de empleado:\n";
+        std::cout << '\n';
+        std::cout << "1. Comprar un producto.\n";
+        std::cout << "2. Imprimir lista de productos.\n";
+        std::cout << "3. Log Out (volver al menú principal).\n";
+        std::cout << "4. Salir.\n";
+        std::cout << '\n';
+
+        std::string optionStr;
+        std::cin >> optionStr;
+        std::cout << '\n';
+
+        int option = std::atoi(optionStr.c_str());
+        switch (option)
+        {
+        case 1:
+            std::cout << "me cansé, salí porfis.\n";
+            break;
+
+        case 2:
+            printProducts();
+            break;
+
+        case 3:
+            return;
+
+        case 4:
+            exitMyProgram = true;
+            return;
+
+        default:
+            std::cout << "ingresá un caracter válido.\n";
+            break;
+
+        } // switch(option)
+
+    } // while (true)
+        
 }
 
 // función que toma datos de un producto y los escribe en Products.txt
@@ -622,7 +661,6 @@ void writeProducts(Product *p)
         std::cout << "no se pudo abrir el archivo.\n";
     }
 
-    // UPDATE: en vez de usar el buffer, escribimos directamente
     ProductsOut << p->name;
     ProductsOut << ",";
     ProductsOut << p->amount;
@@ -634,7 +672,7 @@ void writeProducts(Product *p)
 
 } // void writeProducts(Product* p)
 
-void printProducts(Product *p)
+void printProducts()
 {
     std::string buffer;
     std::ifstream ProductsIn;
@@ -654,4 +692,4 @@ void printProducts(Product *p)
         ProductsIn.close();
 
     ProductsIn.close();
-} // voidreadProducts(Product* p)
+} // void readProducts(Product* p)
